@@ -1,0 +1,9 @@
+<div ng-repeat="x in data" class='dnk_main'>
+	<img ng-src="{{x.photo}}" />
+	<p class='brand'>{{x.brand}} {{x.model}}</p>
+	<p>
+		<a type='button' ui-sref="info({id : x.id})">
+			Detail
+		</a>
+	</p>
+</div>
