@@ -1,7 +1,9 @@
 var App = angular.module('main', ['ui.router']);
 App.controller('mainController', function($scope, $http, mainService) {
+	$scope.main = "";
     mainService.getAllCars(function(results) {
         $scope.data = results;
+		console.log($scope.main);
     });
 	mainService.getData(function(results) {
         $scope.render = results;
@@ -18,15 +20,12 @@ App.controller('mainController', function($scope, $http, mainService) {
 	  data    : $.param($scope.formData),  // pass in data as strings
 	  headers : { 'Content-Type': 'application/x-www-form-urlencoded' }  // set the headers so angular passing info as form data (not request payload)
 	 })
-	  .success(function(data) {
+	.success(function(data) {
 		$scope.data = data;
 
 		if (!data ) {
 		  // if not successful, bind errors to error variables
 		  $scope.error = "your search returned no results";
-		} else {
-		  // if successful, bind success message to message
-		  $scope.message = data.message;
 		}
 	  });
 	};

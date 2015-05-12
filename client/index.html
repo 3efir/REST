@@ -13,6 +13,7 @@
 	<script src="/~user8/REST/client/resources/js/controllers/admin.js"></script>
 	<script src="/~user8/REST/client/resources/js/controllers/register.js"></script>
 	<script src="/~user8/REST/client/resources/js/directives/search.js"></script>
+	<script src="/~user8/REST/client/resources/js/directives/adminMenu.js"></script>
 	<script src="/~user8/REST/client/resources/js/router.js"></script>
 	<script src="/~user8/REST/client/resources/js/config/config.js"></script>
 	<script src="/~user8/REST/client/resources/js/services/mainService.js"></script>
@@ -40,7 +41,7 @@ Search</button>
 			</ul>
 		</nav>
 			<div class="container-fluid">
-				<div ui-view></div>
+				<div data-ng-model="main" ui-view></div>
 				<div ui-view="admin"></div>
 				
 			</div>

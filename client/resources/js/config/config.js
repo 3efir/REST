@@ -29,7 +29,7 @@ App.config(function($stateProvider, $urlRouterProvider) {
 		url: "/admin/add/", 
 		views: {
 			'admin': {
-				template: "asassdfsfsdfsd",
+				templateUrl: "/~user8/REST/client/resources/templates/addAuto.html",
 				controller: "adminController as admin"
 			}
 		}

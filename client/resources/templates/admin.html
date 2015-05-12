@@ -1,22 +1,7 @@
-<div class="btn-group btn-group-justified" role="group" aria-label="...">
-  <div class="btn-group" role="group">
-    <button type="button" class="btn btn-default" ui-sref="addAuto">Add auto</button>
-  </div>
-<div class="btn-group" role="group">
-    <button type="button" class="btn btn-default" ui-sref="admin({action: 'add'})">Add auto</button>
-  </div>
-    <div class="btn-group" role="group">
-    <button type="button" class="btn btn-default" ui-sref="admin({action: 'add'})">Add auto</button>
-  </div>
+<admin></admin>
+<div ng-switch on="adminMenu"> 
+      <div ng-switch-when="add">add</div>
+      <div ng-switch-when="list">list</div>
+	  <div ng-switch-when="orders">orders</div>
 </div>
 {{content}}
-<!--   <select ng-model="selection" ng-options="item for item in items">
-  </select> -->
-  <code>selection={{selection}}</code>
-  <hr/>
-  <div class="animate-switch-container"
-    ng-switch on="selection">
-      <div class="animate-switch" ng-switch-when="settings">Settings Div</div>
-      <div class="animate-switch" ng-switch-when="home">Home Span</div>
-      <div class="animate-switch" ng-switch-default>default</div>
-  </div>
