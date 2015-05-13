@@ -11,7 +11,8 @@
 	<script src="/~user8/REST/client/resources/js/angular.min.js"></script>
 	<script src="/~user8/REST/client/resources/js/controllers/main.js"></script>
 	<script src="/~user8/REST/client/resources/js/controllers/admin.js"></script>
-	<script src="/~user8/REST/client/resources/js/controllers/register.js"></script>
+    <script src="/~user8/REST/client/resources/js/controllers/register.js"></script>
+    <script src="/~user8/REST/client/resources/js/controllers/info.js"></script>
 	<script src="/~user8/REST/client/resources/js/directives/search.js"></script>
 	<script src="/~user8/REST/client/resources/js/directives/adminMenu.js"></script>
 	<script src="/~user8/REST/client/resources/js/router.js"></script>
@@ -22,7 +23,9 @@
 
 <body ng-app="main">
 	<div class="row">
-		<div class="col-xs-3 col-md-2 test"></div>
+        <div class="col-xs-3 col-md-2 test" ng-controller="mainController">
+        
+        </div>
 		<div class="col-xs-12 col-md-8">
 		<nav class="navbar navbar-default" ng-controller="mainController">
 		  <div class="container-fluid">
@@ -45,7 +48,7 @@ Search</button>
 				<div ui-view="admin"></div>
 				
 			</div>
-<search></search>
+            <!--<search></search>-->
 		</div>
 		<div class="col-xs-3 col-md-2 test"></div>
 	</div>

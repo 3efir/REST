@@ -1,47 +1,38 @@
-<!-- Modal -->
-<div class="modal fade" id="myModalSearche" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-  <div class="modal-dialog">
-	<div class="modal-content">
-	  <div class="modal-header">
-		<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-		<h4 class="modal-title" id="myModalLabel">Search</h4>
-	  </div>
-	  <div class="modal-body" ng-controller="mainController as main">
-		<form ng-submit="processForm()">
+		<form class="form-inline" ng-submit="processForm()" >
 			<div class="form-group">
-			<label>Select model</label></br>
+                <label>Select model</label></br>
 			<select name="model" ng-model="formData.model">
 				<option></option>
 				<option ng-repeat="(x, model) in render.models" value="{{model.model}}">{{model.model}}</option>
-			</select></br>
+			</select>
 			</div>
 			<div class="form-group">
-			<label>Select year</label></br>
+                <label>Select year</label></br>
 			<select name="year" ng-model="formData.year" required>
 				<option></option>
 				<option ng-repeat="(x, year) in render.year" value="{{year.year}}">{{year.year}}</option>
-			</select></br>
+			</select>
 			</div>
 			<div class="form-group">
-			<label>Select capacity</label></br>
+                <label>Select capacity</label></br>
 			<select name="capacity" ng-model="formData.capacity">
 				<option></option>
 				<option ng-repeat="(x, capa) in render.capacity" value="{{capa.capacity}}">{{capa.capacity}}</option>
-			</select></br>
+			</select>
 			</div>
 			<div class="form-group">
-			<label>Select color</label></br>
+                <label>Select color</label></br>
 			<select name="color" ng-model="formData.color">
 				<option></option>
 				<option ng-repeat="(x, color) in render.color" value="{{color.color}}">{{color.color}}</option>
-			</select></br>
+			</select>
 			</div>
 			<div class="form-group">
-			<label>Select speed</label></br>
-			<select name="speed" ng-model="formData.speed">
+                <label>Select speed</label></br>
+                <select name="speed" ng-model="formData.speed">
 				<option></option>
 				<option ng-repeat="(x, speed) in render.speed" value="{{speed.speed}}">{{speed.speed}}</option>
-			</select></br>
+			</select>
 			</div>
 			<label>price</label></br>
 			<div class="input-group">
@@ -49,15 +40,5 @@
 				<input type="number" class="form-control price" placeholder="from" name="price" ng-model="formData.price">
 				<div class="input-group-addon">.00</div>
 			</div>
-			<input type="submit" class="btn btn-success btn-lg btn-block" data-dismiss="modal"/>
+			<input type="submit" class="btn btn-success btn-lg btn-block" />
 		</form>
-		{{formData}}
-		{{error}}
-		{{data}}
-	  </div>
-	  <div class="modal-footer">
-		<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-	  </div>
-	</div>
-  </div>
-</div>

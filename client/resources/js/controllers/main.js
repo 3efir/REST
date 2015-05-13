@@ -1,9 +1,9 @@
 var App = angular.module('main', ['ui.router']);
 App.controller('mainController', function($scope, $http, mainService) {
-	$scope.main = "";
+    
     mainService.getAllCars(function(results) {
         $scope.data = results;
-		console.log($scope.main);
+		//console.log($scope.main);
     });
 	mainService.getData(function(results) {
         $scope.render = results;
