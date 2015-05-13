@@ -21,5 +21,37 @@ class CarModel
 		-> selected();
 		return $result;
 	}
+	public function addAuto($arr)
+	{
+		$brand = $arr['brand'];
+		$brandId = $this -> getBrandId($brand);
+		if(empty($brandId))
+		{
+			$this -> addBrand($brand);
+			$brandId = $this -> DB -> getLastInsertId();
+		}
+		else
+		{
+			$brandId = $brandId[0]['id'];
+		}
+		$arr = array($brandId, $arr['model'], $arr['year'], $arr['capacity'],
+					$arr['color'], $arr['speed'], $arr['price']);
+		$this -> DB -> INSERT(" auto ") -> keys(" brand_id, model, year, 
+		capacity, color, speed, price ") -> values(" ?, ?, ?, ?, ?, ?, ? ") -> 
+		insertUpdate($arr);
+		return true;
+	}
+	public function getBrandId($brand)
+	{
+		$result = $this -> DB -> SELECT(" id ") -> from(" brand ") -> where(" 
+		brand LIKE '".$brand."' ") -> selected();
+		return $result;
+	}
+	public function addBrand($brand)
+	{
+		$arr = array($brand);
+		$this -> DB -> INSERT(" brand ") -> keys(" brand ") -> values(" ? ") ->
+		insertUpdate($arr);
+	}
 }
 ?>
