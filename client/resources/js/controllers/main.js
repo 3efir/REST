@@ -1,5 +1,5 @@
 var App = angular.module('main', ['ui.router']);
-App.controller('mainController', function($scope, $http, mainService) {
+App.controller('mainController', function($window, $scope, $http, mainService) {
     
     mainService.getAllCars(function(results) {
         $scope.data = results;
@@ -39,4 +39,7 @@ App.controller('mainController', function($scope, $http, mainService) {
 			$scope.login = "exit";
 		}
     });
+    $scope.reloadRoute = function() {
+           $window.location.reload();
+    }
 });

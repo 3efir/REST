@@ -1,44 +1,56 @@
-		<form class="form-inline" ng-submit="processForm()" >
-			<div class="form-group">
+		<form class="form-inline border" ng-submit="processForm()" >
+            <div class="dnk_centered">
+            <div class="form-group border">
                 <label>Select model</label></br>
 			<select name="model" ng-model="formData.model">
 				<option></option>
 				<option ng-repeat="(x, model) in render.models" value="{{model.model}}">{{model.model}}</option>
 			</select>
 			</div>
-			<div class="form-group">
+			<div class="form-group border">
                 <label>Select year</label></br>
 			<select name="year" ng-model="formData.year" required>
 				<option></option>
 				<option ng-repeat="(x, year) in render.year" value="{{year.year}}">{{year.year}}</option>
 			</select>
 			</div>
-			<div class="form-group">
+			<div class="form-group border">
                 <label>Select capacity</label></br>
 			<select name="capacity" ng-model="formData.capacity">
 				<option></option>
 				<option ng-repeat="(x, capa) in render.capacity" value="{{capa.capacity}}">{{capa.capacity}}</option>
 			</select>
 			</div>
-			<div class="form-group">
+			<div class="form-group border">
                 <label>Select color</label></br>
 			<select name="color" ng-model="formData.color">
 				<option></option>
 				<option ng-repeat="(x, color) in render.color" value="{{color.color}}">{{color.color}}</option>
 			</select>
 			</div>
-			<div class="form-group">
+			<div class="form-group border">
                 <label>Select speed</label></br>
                 <select name="speed" ng-model="formData.speed">
 				<option></option>
 				<option ng-repeat="(x, speed) in render.speed" value="{{speed.speed}}">{{speed.speed}}</option>
 			</select>
-			</div>
-			<label>price</label></br>
-			<div class="input-group">
+        </div>
+    </div>
+    <div class="dnk_centered">
+            <div class="input-group border search-price">
+			<label>price</label></br>                
 				<div class="input-group-addon">$</div>
-				<input type="number" class="form-control price" placeholder="from" name="price" ng-model="formData.price">
+				<input type="number" class="form-control price"
+                placeholder="from" name="price" ng-model="formData.price" min="0">
 				<div class="input-group-addon">.00</div>
-			</div>
-			<input type="submit" class="btn btn-success btn-lg btn-block" />
+            </div>
+	    <div class="form-group border">        
+            <a href="#" ng-click="reloadRoute()" class="navbar-brand"
+                title="clear filter">Clear filter</a>
+        </div>
+
+        </div>
+	   
+			<input type="submit" class="btn btn-success btn-lg btn-block"
+            value="search" />
 		</form>
