@@ -1,5 +1,7 @@
-App.controller('registerController',  function($scope, $stateParams, mainService) {
-	mainService.getDetail(function(results) {
-		$scope.detail = results;
-	});
+App.controller('registerController',  function($scope, $stateParams, adminService) {
+	$scope.registerForm = {};
+	$scope.message = "";
+	$scope.register = function() {
+		adminService.register($scope.registerForm);
+	}
 });

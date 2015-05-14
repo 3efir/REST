@@ -29,14 +29,17 @@ App.controller('mainController', function($window, $scope, $http, mainService) {
 		}
 	  });
 	};
+	$scope.login = {};
 	mainService.checkLogin(function(results) {
 		if(results == false) {
-			$scope.login = {};
-			$scope.login.sref = 'ui-sref="register"';
-			$scope.login.link = "Registration";
+			$scope.login.srefRegister = '#/register/';
+			$scope.login.linkRegister = "Registration";
+			$scope.login.sref = "#/login/";
+			$scope.login.link = "Login";
 		}
 		else {
-			$scope.login = "exit";
+			$scope.login.sref = "#/exit/";
+			$scope.login.link = "Exit";
 		}
     });
     $scope.reloadRoute = function() {

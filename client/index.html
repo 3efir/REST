@@ -35,8 +35,9 @@
 			<div class="navbar-header">
 			  <a class="navbar-brand" ui-sref="index">iWant</a>
 			</div>
-			<a class="navbar-brand pull-right" {{login.sref}}>{{login.link}}</a>
 			
+			<a class="navbar-brand pull-right" ng-href={{login.srefRegister}}>{{login.linkRegister}}</a>
+			<a class="navbar-brand pull-right" ng-href={{login.sref}}>{{login.link}}</a>
 <button type="button" class="btn btn-danger btn-lg" ui-sref="admin">
 	Admin
 </button>

@@ -1,5 +1,5 @@
 App.controller('adminController',  function($scope, $state, $stateParams, 
-	adminService) {
+	adminService, mainService) {
 	$scope.adminMenu = '';
 	$scope.formAuto = {};
 	$scope.add = function() {
@@ -28,4 +28,14 @@ App.controller('adminController',  function($scope, $state, $stateParams,
 		}
 	  }); */
 	};
+	adminService.getOrders(function(results) {
+        $scope.orders = results;
+    });
+	adminService.getAllCars(function(results) {
+        $scope.data = results;
+		//console.log($scope.main);
+    });
+	$scope.deleteCar = function(id) {
+		adminService.deleteCar(id);
+	}
 });

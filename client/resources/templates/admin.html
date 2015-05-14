@@ -30,7 +30,48 @@
 		</form>
 	{{message}}
 	</div>
-	<div ng-switch-when="list">list</div>
+	<div ng-switch-when="list">
+	{{data}}
+	<div ng-repeat="x in data">
+		<button class="btn btn-primary" type="button" data-toggle="collapse" data-target="#collapse{{x.id}}" aria-expanded="false" aria-controls="collapseExample">
+		 | id: {{x.id}} | {{x.brand}} {{x.model}} |
+		</button>
+		<button class="btn btn-primary" type="button" ng-click='deleteCar(x.id)'>
+		 Delete
+		</button>
+		<div class="collapse" id="collapse{{x.id}}">
+		  <div class="well">
+			<form ng-submit="addAuto()">
+			<div class="form-group">
+				<input type="text" value="{{x.brand}}" class="form-control" ng-model="formAuto.brand"  required />
+			</div>
+			<div class="form-group">
+				<input type="text" class="form-control" ng-model="formAuto.model" placeholder="Enter model like: X6" required />
+			</div>
+			<div class="form-group">
+				<input type="number" class="form-control" ng-model="formAuto.year" placeholder="Enter year like: 2015" required />
+			</div>
+			<div class="form-group">
+				<input type="number" class="form-control" ng-model="formAuto.capacity" placeholder="Enter capacity like: 500">
+			</div>
+			<div class="form-group">
+				<input type="text" class="form-control" ng-model="formAuto.color" placeholder="Enter color like: black">
+			</div>
+			<div class="form-group">
+				<input type="number" class="form-control" ng-model="formAuto.speed" placeholder="Enter max speed like: 360">
+			</div>
+			<div class="input-group">
+				<div class="input-group-addon">$</div>
+				<input type="number" class="form-control price" placeholder="Enter price like: 10000" name="price" ng-model="formAuto.price" required />
+				<div class="input-group-addon">.00</div>
+			</div>
+			<input type="submit" class="btn btn-success btn-lg btn-block" />
+		</form>
+		  </div>
+		</div>
+	</div>
+	
+	</div>
 	<div ng-switch-when="orders">orders</div>
 </div>
 {{content}}

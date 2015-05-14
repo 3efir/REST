@@ -30,5 +30,15 @@ class CarController extends ServerController
 		$cars = $this -> model -> getAllCars();
 		$this -> view -> returns($this -> encode -> encode(ENCODE, $cars));
 	}
+	public function getCarsForRedactAction()
+	{
+		$cars = $this -> model -> getCarsForRedact();
+		$this -> view -> returns($this -> encode -> encode(ENCODE, $cars));
+	}
+	public function deleteInfo()
+	{
+		$id = FrontController::getParams();
+		$this -> model -> deleteCar($id);
+	}
 }
 ?>

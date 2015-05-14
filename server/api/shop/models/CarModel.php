@@ -53,5 +53,17 @@ class CarModel
 		$this -> DB -> INSERT(" brand ") -> keys(" brand ") -> values(" ? ") ->
 		insertUpdate($arr);
 	}
+	public function getCarsForRedact()
+	{
+		$result = $this -> DB -> SELECT(" a.id, a.model, a.color, a.price,
+		a.capacity, a.speed, a.year, b.brand ") -> from(" auto a ") ->
+		inner(" brand b ") -> on(" a.brand_id = b.id ") -> selected();
+		return $result;
+	}
+	public function deleteCar($id)
+	{
+		$this -> DB -> DELETE(" auto ") -> where(" id = $id ") -> deleted();
+		return true;
+	}
 }
 ?>

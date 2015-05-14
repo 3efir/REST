@@ -36,6 +36,10 @@ class ServerModel
 			return $e->getMessage();
 		}
 	}
+	public function getOrders()
+	{
+		
+	}
 	public function getData()
 	{
 		$result = array();

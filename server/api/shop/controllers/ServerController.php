@@ -24,14 +24,32 @@ class ServerController
 			case 'PUT':
 			$this -> putInfo();
 			break;
-			case 'delete':
+			case 'DELETE':
 			$this -> deleteInfo();
 			break;
 		}
 	}
-	public function order($id, $fname, $lname, $payType)
+	public function orderAction()
+	{
+		$method = $_SERVER['REQUEST_METHOD'];
+		switch($method)
+		{
+			case 'GET':
+			$this -> getOrders();
+			break;
+			case 'POST':
+			$this -> postOrder();
+			break;
+		}
+	}
+	public function postOrder($id, $fname, $lname, $payType)
 	{
 		return $this -> model -> saveOrder($id, $fname, $lname, $payType);
+	}
+	public function getOrders()
+	{
+		$data = $this -> model -> getOrders();
+		$this -> view -> returns($this -> encode -> encode(ENCODE, $data));
 	}
 	public function getDataAction()
 	{
