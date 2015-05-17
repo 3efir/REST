@@ -41,9 +41,9 @@ class EncoderModel
 	{
 		return password_verify($pass, $hash);
 	}
-	public function createToken($data)
+	public function createToken()
 	{
-		return md5($data);
+		return md5(rand(20, 50));
 	}
 }
 ?>

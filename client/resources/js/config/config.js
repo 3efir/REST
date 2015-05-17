@@ -34,4 +34,9 @@ App.config(function($stateProvider, $urlRouterProvider) {
 			}
 		}
 	})
+	.state('login', {
+		url: "/login/",
+		controller: "userController",
+		templateUrl: "/~user8/REST/client/resources/templates/login.html"
+	})
 });

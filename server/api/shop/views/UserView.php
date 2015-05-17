@@ -1,9 +1,6 @@
 <?php
-class UserView
+class UserView extends ServerView
 {
-	public function returns($data)
-	{
-		print_r($data);
-	}
+	
 }
 ?>

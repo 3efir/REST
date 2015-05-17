@@ -1,13 +1,14 @@
 <?php  
 class ServerController
 {
-	protected $model, $encode, $view, $valid;
+	protected $model, $encode, $view, $valid, $userModel;
 	public function __construct()
 	{
 		$this -> model = new ServerModel();
 		$this -> encode = EncoderModel::getInstance();
 		$this -> view = new ServerView();
 		$this -> valid = new ValidatorsModel();
+		$this -> userModel = new UserModel();
 	}
 
 	public function infoAction()
@@ -42,9 +43,22 @@ class ServerController
 			break;
 		}
 	}
-	public function postOrder($id, $fname, $lname, $payType)
+	public function postOrder()
 	{
-		return $this -> model -> saveOrder($id, $fname, $lname, $payType);
+		$arr = array();
+		foreach($_POST as $key => $val)
+		{
+			$arr[$key] = $this -> valid -> FilterFormValues($val);
+		}
+		if(true == $this -> userModel -> checkLogin($arr['hash']))
+		{
+			$result = $this -> model -> saveOrder($arr);
+			$this -> view -> returns($result);
+		}
+		else
+		{
+			$this -> view -> returns(false);
+		}
 	}
 	public function getOrders()
 	{
@@ -68,23 +82,19 @@ class ServerController
 	}
 	public function loginAction()
 	{
-/* 		$method = $_SERVER['REQUEST_METHOD'];
+		$method = $_SERVER['REQUEST_METHOD'];
 		switch($method)
 		{
 			case 'GET':
 			$this -> getLogin();
 			break;
-			case 'POST':
-			$this -> postLogin();
-			break;
 			case 'PUT':
 			$this -> putLogin();
 			break;
-			case 'delete':
+			case 'DELETE':
 			$this -> deleteLogin();
 			break;
-		} */
-		echo false;
-	}
+		}
+  }
 }   
 ?> 

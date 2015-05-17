@@ -2,6 +2,7 @@ App.controller('registerController',  function($scope, $stateParams, adminServic
 	$scope.registerForm = {};
 	$scope.message = "";
 	$scope.register = function() {
-		adminService.register($scope.registerForm);
+		var message = adminService.register($scope.registerForm);
+		console.log(adminService.message);
 	}
 });

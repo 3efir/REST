@@ -1,15 +1,14 @@
 var App = angular.module('main', ['ui.router']);
-App.controller('mainController', function($window, $scope, $http, mainService) {
+App.controller('mainController', function($window, $scope, $http, mainService,
+	userService) {
     
     mainService.getAllCars(function(results) {
         $scope.data = results;
-		//console.log($scope.main);
     });
 	mainService.getData(function(results) {
         $scope.render = results;
     });
-      // create a blank object to hold our form information
-      // $scope will allow this to pass between controller and view
+     
       $scope.formData = {};
 	 
 	  // process the form
@@ -17,8 +16,8 @@ App.controller('mainController', function($window, $scope, $http, mainService) {
 	  $http({
 	  method  : 'POST',
 	  url     : "/~user8/REST/client/api/server/search/",
-	  data    : $.param($scope.formData),  // pass in data as strings
-	  headers : { 'Content-Type': 'application/x-www-form-urlencoded' }  // set the headers so angular passing info as form data (not request payload)
+	  data    : $.param($scope.formData),  
+	  headers : { 'Content-Type': 'application/x-www-form-urlencoded' }  
 	 })
 	.success(function(data) {
 		$scope.data = data;
@@ -31,18 +30,15 @@ App.controller('mainController', function($window, $scope, $http, mainService) {
 	};
 	$scope.login = {};
 	mainService.checkLogin(function(results) {
-		if(results == false) {
-			$scope.login.srefRegister = '#/register/';
-			$scope.login.linkRegister = "Registration";
-			$scope.login.sref = "#/login/";
-			$scope.login.link = "Login";
-		}
-		else {
-			$scope.login.sref = "#/exit/";
-			$scope.login.link = "Exit";
-		}
+		$scope.log = results;
     });
     $scope.reloadRoute = function() {
            $window.location.reload();
-    }
+    };
+	$scope.logOut = function() {
+		userService.logOut();	
+	};
+	$scope.order = function() {
+		userService.order();
+	}
 });
