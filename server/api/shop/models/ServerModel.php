@@ -8,7 +8,7 @@ class ServerModel
 	}
 	public function saveOrder($arr)
 	{
-		$idArr = $this -> DB -> SELECT(" id ") -> from(" dnk_users ") -> 
+		$idArr = $this -> DB -> SELECT(" id ") -> from(" users ") -> 
 		where(" token = \"".$arr['hash']."\"") -> selected();
 		try
 		{

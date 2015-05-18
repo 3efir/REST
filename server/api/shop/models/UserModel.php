@@ -23,7 +23,7 @@ class UserModel
 	}
 	public function logIn($email, $pass)
 	{
-		$res = $this -> DB -> SELECT("id, pass ") -> from(" dnk_users ") -> where(" 
+		$res = $this -> DB -> SELECT("id, pass ") -> from(" users ") -> where(" 
 		email = \"$email\" ") -> selected();
 		if(empty($res))
 		{
@@ -36,13 +36,13 @@ class UserModel
 		}
 		$token = $this -> encode -> createToken();
 		$arr = array($token);
-		$this -> DB -> UPDATE(" dnk_users ") -> SET(" token ") ->
+		$this -> DB -> UPDATE(" users ") -> SET(" token ") ->
 		where(" id = ".$res[0]['id']) -> insertUpdate($arr);
 		return $token;
 	}
 	public function checkLogin($hash)
 	{
-		$res = $this -> DB -> SELECT(" id ") -> from(" dnk_users ") -> 
+		$res = $this -> DB -> SELECT(" id ") -> from(" users ") -> 
 		where(" token =\"$hash\"") -> selected();
 		if(empty($res))
 		{
@@ -57,7 +57,7 @@ class UserModel
 	{
 		$newHash = null;
 		$arr = array($newHash);
-		$this -> DB -> UPDATE(" dnk_users ") -> SET(" token ") -> 
+		$this -> DB -> UPDATE(" users ") -> SET(" token ") -> 
 		where(" token = \"$hash\" ") -> insertUpdate($arr);
 		return true;
 	}

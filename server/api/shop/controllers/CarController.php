@@ -1,19 +1,24 @@
 <?php
 class CarController extends ServerController
 {
-	protected $model, $encode, $view, $valid;
+	protected $model, $encode, $view, $valid, $format;
 	public function __construct()
 	{
 		$this -> model = new CarModel();
 		$this -> encode = EncoderModel::getInstance();
 		$this -> view = new CarView();
 		$this -> valid = new ValidatorsModel();
+		$this -> format = $this -> valid -> 
+		FilterFormValues(FrontController::getFormat());
 	}
 	public function getInfo()
 	{
 		$id = $this -> valid -> FilterFormValues(FrontController::getParams());
+		$format = $this -> valid -> FilterFormValues(FrontController::getFormat());
+		//echo $id;
 		$detail = $this -> model -> getDetail($id);
-		$this -> view -> returns($this -> encode -> encode(ENCODE, $detail));
+		$this -> view -> returns($this -> encode -> encode($format,
+		$detail));
 	}
 	public function postInfo()
 	{
@@ -28,12 +33,18 @@ class CarController extends ServerController
 	public function getAllCarsAction()
 	{
 		$cars = $this -> model -> getAllCars();
-		$this -> view -> returns($this -> encode -> encode(ENCODE, $cars));
+		$format = $this -> valid -> 
+		FilterFormValues(FrontController::getFormat());
+		$this -> view -> returns($this -> encode -> encode($format,
+		$cars));
 	}
 	public function getCarsForRedactAction()
 	{
 		$cars = $this -> model -> getCarsForRedact();
-		$this -> view -> returns($this -> encode -> encode(ENCODE, $cars));
+		$format = $this -> valid -> 
+		FilterFormValues(FrontController::getFormat());
+		$this -> view -> returns($this -> encode -> encode($format,
+		$cars));
 	}
 	public function deleteInfo()
 	{

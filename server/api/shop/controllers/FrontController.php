@@ -1,10 +1,8 @@
 <?php
-error_reporting( E_ALL );
-ini_set("display_errors", 1);
 class FrontController
 {
 	protected $_controller, $_action;
-	static $_instance, $_body, $_params;
+	static $_instance, $_body, $_params, $_format;
 
 	public static function getInstance()
 	{
@@ -24,7 +22,20 @@ class FrontController
 		$this->_action = !empty($splits[5])?$splits[5].'Action':'indexAction';
 		if(!empty($splits[6]))
 		{
-			self::$_params = $splits[6];
+			$pieces = explode(".", $splits[6]);
+			self::$_params = $pieces[0];
+			if(empty($pieces[1]))
+			{
+				self::$_format = ENCODE;
+			}
+			else
+			{
+				self::$_format = $pieces[1];
+			}
+		}
+		else
+		{
+			self::$_format = ENCODE;
 		}
 	}
 	public function route()
@@ -66,6 +77,10 @@ class FrontController
 	public static function getParams()
 	{
 		return self::$_params;
+	}
+	public static function getFormat()
+	{
+		return self::$_format;
 	}
 	function getController()
 	{

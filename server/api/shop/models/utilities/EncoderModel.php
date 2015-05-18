@@ -23,11 +23,45 @@ class EncoderModel
 			case 'xml':
 			return $this -> xml($data);
 			break;
+			case 'html':
+			return $this -> html($data);
+			break;
+			case 'txt':
+			return $data;
+			break;
 		}
 	}
 	public function json($data)
 	{
 		return json_encode($data);
+	}
+	public function html($data)
+	{
+		$res = '';
+		foreach($data as $k => $v)
+		{
+			$res .= "<ul>$k";
+			$res .= "<li>$v</li>";
+			$res .= "</ul>";
+		}
+		return $res;
+	}
+	public function xml($data)
+	{
+		$dom = new DOMDocument('1.0', 'utf-8');
+		foreach($data as $key => $val)
+		{
+			$new = $dom -> createElement("key");
+			foreach($val as $k => $v)
+			{
+				$node = $dom -> createElement($k);
+				$text = $dom -> createTextNode($v);
+				$node -> appendChild($text);
+				$new -> appendChild($node);
+			}
+			$dom -> appendChild($new);
+		}
+		return $dom -> saveXML();
 	}
 	// incoming param: password
 // return hash password
